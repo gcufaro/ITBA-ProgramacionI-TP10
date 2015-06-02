@@ -48,8 +48,15 @@ int main(int argc, char** argv) {
    mipunto pB= {350,350-50*sqrt(3)};
    mipunto pC= {450,350+50*sqrt(3)};
    
-   MiCopoDeNieveKoch(pA,pB,pC);
+   MiAlgoritmoKoch(pA,pC,3);
+   MiAlgoritmoKoch(pC,pB,3);
+   MiAlgoritmoKoch(pB,pA,3);
+
  
+   //al_draw_line(250,350+50*sqrt(3),450,350+50*sqrt(3),al_map_rgb(255,0,0),2);
+   //al_draw_line(250,350+50*sqrt(3),350,350-50*sqrt(3),al_map_rgb(255,0,0),2);
+   //al_draw_line(350,350-50*sqrt(3),450,350+50*sqrt(3),al_map_rgb(255,0,0),2);
+   
    al_flip_display();
  
    while(1)
@@ -94,7 +101,7 @@ void MiAlgoritmoKoch(mipunto inicio,mipunto fin, int n)
 }
 
 
-void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3)
+void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3) //con errrores!
 {  
    MiAlgoritmoKoch(punto1, punto2, limite);
    MiAlgoritmoKoch(punto2, punto3, limite);
