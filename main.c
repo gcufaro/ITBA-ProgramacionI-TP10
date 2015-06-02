@@ -18,7 +18,8 @@
 
 typedef float mipunto[2];
 void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1);
-void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned int orden, ALLEGRO_COLOR micolor2);
+void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned 
+                    int orden, ALLEGRO_COLOR micolor2);
 
 int main(int argc, char** argv) {
  
@@ -100,6 +101,7 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
      al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
     }else
     {
+        
     mipunto puntoA= {inicio[0],inicio[1]};
     mipunto puntoB = {(2.0 * inicio[0]+fin[0])/3.0,(2.0 * inicio[1]+fin[1])/3.0 };
     mipunto puntoC = {(inicio[0]+fin[0])/2.0 - sqrt(3.0)/6.0 *(fin[1]-inicio[1]),
@@ -107,7 +109,8 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     mipunto puntoD = {(inicio[0]+2.0 * fin[0])/3.0,(inicio[1]+2.0 *fin[1])/3.0 };
     mipunto puntoE = {fin[0],fin[1]};
 
-    al_draw_filled_triangle(puntoB[0], puntoB[1], puntoC[0], puntoC[1], puntoD[0], puntoD[1], micolor1); //relleno el triangulo nuevo con un color
+    al_draw_filled_triangle(puntoB[0], puntoB[1], puntoC[0], puntoC[1], puntoD[0], 
+                        puntoD[1], micolor1); //relleno el triangulo nuevo con un color
     
     MiAlgoritmoKoch(puntoA, puntoB, n-1, micolor1);
     MiAlgoritmoKoch(puntoB, puntoC, n-1, micolor1);
@@ -116,10 +119,10 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     }
 }
 
-
 void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned int orden, ALLEGRO_COLOR micolor2) //con errrores!
 {  
-   al_draw_filled_triangle(punto1[0], punto1[1], punto2[0], punto2[1], punto3[0], punto3[1], micolor2); //relleno el triángulo inicial ya que no se contempla en el algoritmo por que solamente es con líneas
+   al_draw_filled_triangle(punto1[0], punto1[1], punto2[0], punto2[1], punto3[0], punto3[1], micolor2); 
+            //relleno el triángulo inicial ya que no se contempla en el algoritmo por que solamente es con líneas
    
    MiAlgoritmoKoch(punto1, punto3, orden, micolor2);
    MiAlgoritmoKoch(punto3, punto2, orden, micolor2);
