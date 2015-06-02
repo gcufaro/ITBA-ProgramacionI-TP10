@@ -119,7 +119,7 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     }
 }
 
-void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned int orden, ALLEGRO_COLOR micolor2) //con errrores!
+void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned int orden, ALLEGRO_COLOR micolor2)
 {  
    al_draw_filled_triangle(punto1[0], punto1[1], punto2[0], punto2[1], punto3[0], punto3[1], micolor2); 
             //relleno el triángulo inicial ya que no se contempla en el algoritmo por que solamente es con líneas
