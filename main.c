@@ -6,6 +6,8 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <dos.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -98,7 +100,12 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
 {
     if(n<=0)
     {
-     al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
+        int n=0;
+        for(n=0;n<50;n++)
+        {
+      al_flip_display();
+        }
+   al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
     }else
     {
         
@@ -112,6 +119,7 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     al_draw_filled_triangle(puntoB[0], puntoB[1], puntoC[0], puntoC[1], puntoD[0], 
                         puntoD[1], micolor1); //relleno el triangulo nuevo con un color
     
+
     MiAlgoritmoKoch(puntoA, puntoB, n-1, micolor1);
     MiAlgoritmoKoch(puntoB, puntoC, n-1, micolor1);
     MiAlgoritmoKoch(puntoC, puntoD, n-1, micolor1);
