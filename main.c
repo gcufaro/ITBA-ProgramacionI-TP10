@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 {
 	int i=0;			//Variable utilizada para contadores
 
+//Identificacion de claves y valores y deteccion de errores en la sintaxis de linea de comando------------
+
 	int argtype[argc];		//Creo el arreglo cuyo contenido me indica que tipo de dato es cada argumento (0=nombre, 1=clave, 2=valor, 3=parametro)
 
 	for(i=1;i<argc;i++)
@@ -62,13 +64,16 @@ int main(int argc, char *argv[])
 		}
 	}
 
+//Identificacion de cada opcion------------------------------------------
+
 	char* clave1="-order";
 	char* clave2="-tol";
 	char* clave3="-color";
 	char* clave4="-report";
 
-	int orden=4, tolerancia=4;								//valores del orden y tolerancia por defecto
+	int orden=-1, tolerancia=-1, doreport=0;					//valores del orden, tolerancia y report de control
 	int red=255, green=0, blue=0;							//valores de los colores por defecto
+	char* reportname=NULL;
 
 	for(i=0;i<argc;i++)
 	{
@@ -108,10 +113,48 @@ int main(int argc, char *argv[])
 					return -1;
 				}
 			}
+
+			if(mystr_compare(clave4, argv[i]))
+			{
+				doreport=1;
+				reportname=argv[i+1];
+			}
 		}
 	}
 
-//Inicia la parte grafica
+
+//Controles respecto a la relacion orden-tolerancia---------------------
+
+	if((orden==-1)&&(tolerancia==-1))					//me fijo si no se establecio por opcion ni orden ni tolerancia
+	{
+		orden=4;
+		tolerancia=4;									//valores de tolerancia y orden por defecto
+	}
+	if((orden!=-1)&&(tolerancia==-1))					//si se introdujo un valor de orden pero no de tolerancia,
+		tolerancia=orden;								//le doy el mismo valor a la tolerancia
+
+	if((orden==-1)&&(tolerancia!=-1))					//si se introdujo un valor de tolerancia pero no de orden,
+		orden=tolerancia;								//le doy el mismo valor al orden
+
+	if(tolerancia>orden)								//si se le dio un valor a la tolerancia mayor al valor dado al
+		tolerancia=orden;								//orden, bajo la tolerancia hasta el orden dado
+
+
+//Realizacion del reporte------------------------------------------------
+
+	if(doreport)
+	{
+		FILE* freport;
+		freport = fopen(reportname,"w");
+
+		if(freport==NULL)								//indico si se produjo algun error al abrir el archivo
+			printf("El reporte %s no ha podido crearse correctamente.\n",reportname);
+
+		fpritnf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %d\n\tArea: %d\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+	}
+
+
+//Inicia la parte grafica------------------------------------------------
 
    ALLEGRO_DISPLAY *display = NULL;
    ALLEGRO_EVENT_QUEUE *event_queue = NULL;

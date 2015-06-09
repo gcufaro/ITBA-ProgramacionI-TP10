@@ -48,14 +48,14 @@ void MiCopoDeNieveKoch(mipunto punto1, mipunto punto2, mipunto punto3, unsigned 
 } 
 
 int mystr_compare (char* stringA, char* stringB)
-r{
-	int strlen;										//longitud del primer string
-	for(strlen=0; stringA[]!='\0'; strlen++);		//recorro el string para saber su longitud
+{
+	int strlen;											//longitud del primer string
+	for(strlen=0; stringA[strlen]!='\0'; strlen++);	//recorro el string para saber su longitud
 	strlen++;										
 
 	int i;											//indice para recorer el string
 	for(i=0; i<=strlen; i++)
-		if(stringA[i]!=stringB[])					//comparo strings caracter por caracter
+		if(stringA[i]!=stringB[i])					//comparo strings caracter por caracter
 			return 0;								//si alguno no coincide devuelvo 0
 
 	return 1;										//si todos coinciden devuelvo 1
@@ -69,6 +69,7 @@ int getint (char* stringC)
 		if((stringC[i]>'9') || (stringC[i]<'1'))	//si algun caracter del string no es un numero, devuelvo -1
 			return -1;
 		else x = 10*x + (stringC[i]-'0');
+	}
 	return x;										//si todos son numeros, devuelvo el numero entero
 }
 			
@@ -119,9 +120,9 @@ int getG (char* stringF)
 int getB (char* stringG)
 {
 	int i, blue=0;									//indice para recorrer el string, variable de color azul
-	for(i=0; stringGF[i]!=','; i++);
+	for(i=0; stringG[i]!=','; i++);
 	i++;
-	for(i=0; stringGF[i]!=','; i++);
+	for(i=0; stringG[i]!=','; i++);
 	i++;											//paso la segunda coma (salteo la parte del rojo y del verde)
 
 	for(i=i; stringG[i]!=','; i++)
