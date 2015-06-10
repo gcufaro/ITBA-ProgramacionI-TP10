@@ -151,13 +151,13 @@ int main(int argc, char *argv[])
 		if(freport==NULL)								//indico si se produjo algun error al abrir el archivo
 			printf("El reporte %s no ha podido crearse correctamente.\n",reportname);
 
-	//	fprintf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+		fprintf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
 	
-		printf("Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+		//printf("Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
 	}
 
 
-	return 0;
+
 }
 
 
