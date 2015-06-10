@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <dos.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
@@ -77,7 +78,7 @@ int main(int argc, char *argv[])
 
 	for(i=0;i<argc;i++)
 	{
-		if(argtype[i]==2)
+		if(argtype[i]==1)
 		{
 			if(mystr_compare(clave1, argv[i]))				//me fijo si esa calve es el orden
 			{
@@ -150,7 +151,7 @@ int main(int argc, char *argv[])
 		if(freport==NULL)								//indico si se produjo algun error al abrir el archivo
 			printf("El reporte %s no ha podido crearse correctamente.\n",reportname);
 
-		fpritnf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %d\n\tArea: %d\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+		fprintf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %d\n\tArea: %d\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
 	}
 
 
@@ -229,36 +230,6 @@ int main(int argc, char *argv[])
    return 0;
 }
 
-void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
-{
-    if(n<=0)
-    {
-        int n=0;
-        for(n=0;n<50;n++)
-        {
-      al_flip_display();
-        }
-   al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
-    }else
-    {
-        
-    mipunto puntoA= {inicio[0],inicio[1]};
-    mipunto puntoB = {(2.0 * inicio[0]+fin[0])/3.0,(2.0 * inicio[1]+fin[1])/3.0 };
-    mipunto puntoC = {(inicio[0]+fin[0])/2.0 - sqrt(3.0)/6.0 *(fin[1]-inicio[1]),
-		       (inicio[1]+fin[1])/2.0 + sqrt(3.0)/6.0 *(fin[0]-inicio[0])};
-    mipunto puntoD = {(inicio[0]+2.0 * fin[0])/3.0,(inicio[1]+2.0 *fin[1])/3.0 };
-    mipunto puntoE = {fin[0],fin[1]};
-
-    al_draw_filled_triangle(puntoB[0], puntoB[1], puntoC[0], puntoC[1], puntoD[0], 
-                        puntoD[1], micolor1); //relleno el triangulo nuevo con un color
-    
-
-    MiAlgoritmoKoch(puntoA, puntoB, n-1, micolor1);
-    MiAlgoritmoKoch(puntoB, puntoC, n-1, micolor1);
-    MiAlgoritmoKoch(puntoC, puntoD, n-1, micolor1);
-    MiAlgoritmoKoch(puntoD, puntoE, n-1, micolor1);
-    }
-}
 
 
 
