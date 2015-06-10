@@ -15,8 +15,13 @@
 
 void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
 {
+    int loop=0;
     if(n<=0)
     {
+        for(loop=0;loop<25;loop++)
+        {
+            al_flip_display();
+        }
      al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
     }else
     {

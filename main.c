@@ -70,8 +70,9 @@ int main(int argc, char *argv[])
 	char* clave2="-tol\0";
 	char* clave3="-color\0";
 	char* clave4="-report\0";
+        char* clave5="-variacion\0";
 
-	int orden=-1, tolerancia=-1, doreport=0;					//valores del orden, tolerancia y report de control
+	int orden=-1, tolerancia=-1, doreport=0, arte=0;					//valores del orden, tolerancia y report de control
 	int red=255, green=0, blue=0;							//valores de los colores por defecto
 	char* reportname=NULL;
 
@@ -119,6 +120,12 @@ int main(int argc, char *argv[])
 				doreport=1;
 				reportname=argv[i+1];
 			}
+                        
+			if(mystr_compare(clave5, argv[i]))
+			{
+                            arte=1;
+			}
+                        
 		}
 	}
 
@@ -143,7 +150,7 @@ int main(int argc, char *argv[])
 
 //Realizacion del reporte------------------------------------------------
 
-	if(doreport)
+	if(doreport == 1)
 	{
 		FILE* freport;
 		freport = fopen(reportname,"w");
@@ -158,7 +165,6 @@ int main(int argc, char *argv[])
 
 
 
-}
 
 
 //Inicia la parte grafica------------------------------------------------
@@ -192,28 +198,30 @@ int main(int argc, char *argv[])
  
    al_clear_to_color(al_map_rgb(255,255,255));
    
-  
-//   mipunto pA= {300,350+(3*12.5*sqrt(3))/2}; //punto de la izquierda del triángulo
-//   mipunto pB= {350,350-(5*12.5*sqrt(3))/2}; //punto del medio del triángulo
-//   mipunto pC= {400,350+(3*12.5*sqrt(3))/2}; //punto de la derecha del triángulo
+   mipunto pA= {300,350+(3*12.5*sqrt(3))/2}; //punto de la izquierda del triángulo
+   mipunto pB= {350,350-(5*12.5*sqrt(3))/2}; //punto del medio del triángulo
+   mipunto pC= {400,350+(3*12.5*sqrt(3))/2}; //punto de la derecha del triángulo
    
-//   mipunto pA1= {250,350+(3*25*sqrt(3))/2}; //punto de la izquierda del triángulo
-//   mipunto pB1= {350,350-(5*25*sqrt(3))/2}; //punto del medio del triángulo
-//   mipunto pC1= {450,350+(3*25*sqrt(3))/2}; //punto de la derecha del triángulo
+   mipunto pA1= {250,350+(3*25*sqrt(3))/2}; //punto de la izquierda del triángulo
+   mipunto pB1= {350,350-(5*25*sqrt(3))/2}; //punto del medio del triángulo
+   mipunto pC1= {450,350+(3*25*sqrt(3))/2}; //punto de la derecha del triángulo
    
-//   mipunto pA2= {200,350+(3*37.5*sqrt(3))/2}; //punto de la izquierda del triángulo
-//   mipunto pB2= {350,350-(5*37.5*sqrt(3))/2}; //punto del medio del triángulo
-//   mipunto pC2= {500,350+(3*37.5*sqrt(3))/2}; //punto de la derecha del triángulo
+   mipunto pA2= {200,350+(3*37.5*sqrt(3))/2}; //punto de la izquierda del triángulo
+   mipunto pB2= {350,350-(5*37.5*sqrt(3))/2}; //punto del medio del triángulo
+   mipunto pC2= {500,350+(3*37.5*sqrt(3))/2}; //punto de la derecha del triángulo
    
    mipunto pA3= {100,350+(3*62.5*sqrt(3))/2}; //punto de la izquierda del triángulo
    mipunto pB3= {350,350-(5*62.5*sqrt(3))/2}; //punto del medio del triángulo
    mipunto pC3= {600,350+(3*62.5*sqrt(3))/2}; //punto de la derecha del triángulo
    
    MiCopoDeNieveKoch(pA3,pB3,pC3, tolerancia, al_map_rgb(red,green,blue)); 	//COLOR Y ORDEN AHORA VARIABLES
-//   MiCopoDeNieveKoch(pA2,pB2,pC2, 3, al_map_rgb(0,255,0)); 
-//   MiCopoDeNieveKoch(pA1,pB1,pC1, 2, al_map_rgb(0,0,255));
-//   MiCopoDeNieveKoch(pA,pB,pC, 1, al_map_rgb(255,0,255));
-
+   
+   if(arte==1)
+   {
+    MiCopoDeNieveKoch(pA2,pB2,pC2, 3, al_map_rgb(0,255,0)); 
+    MiCopoDeNieveKoch(pA1,pB1,pC1, 2, al_map_rgb(0,0,255));
+    MiCopoDeNieveKoch(pA,pB,pC, 1, al_map_rgb(255,0,255));
+   }
 
    al_flip_display();
  
@@ -234,37 +242,6 @@ int main(int argc, char *argv[])
    al_destroy_event_queue(event_queue);
  
    return 0;
-}
-
-void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
-{
-    if(n<=0)
-    {
-        int n=0;
-        for(n=0;n<50;n++)
-        {
-      al_flip_display();
-        }
-   al_draw_line(inicio[0], inicio[1], fin[0], fin[1], al_map_rgb(0,0,0), 2);  //linea de contorno de la figura
-    }else
-    {
-        
-    mipunto puntoA= {inicio[0],inicio[1]};
-    mipunto puntoB = {(2.0 * inicio[0]+fin[0])/3.0,(2.0 * inicio[1]+fin[1])/3.0 };
-    mipunto puntoC = {(inicio[0]+fin[0])/2.0 - sqrt(3.0)/6.0 *(fin[1]-inicio[1]),
-		       (inicio[1]+fin[1])/2.0 + sqrt(3.0)/6.0 *(fin[0]-inicio[0])};
-    mipunto puntoD = {(inicio[0]+2.0 * fin[0])/3.0,(inicio[1]+2.0 *fin[1])/3.0 };
-    mipunto puntoE = {fin[0],fin[1]};
-
-    al_draw_filled_triangle(puntoB[0], puntoB[1], puntoC[0], puntoC[1], puntoD[0], 
-                        puntoD[1], micolor1); //relleno el triangulo nuevo con un color
-    
-
-    MiAlgoritmoKoch(puntoA, puntoB, n-1, micolor1);
-    MiAlgoritmoKoch(puntoB, puntoC, n-1, micolor1);
-    MiAlgoritmoKoch(puntoC, puntoD, n-1, micolor1);
-    MiAlgoritmoKoch(puntoD, puntoE, n-1, micolor1);
-    }
 }
 
 

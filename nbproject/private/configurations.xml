@@ -24,9 +24,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -report mireport</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" </runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -report filename</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename -variacion</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename -variacion 1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -variacion 1</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -orden 4 -variacion 1</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -orden 4 -variacion 1 -report mireporte</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -orden 4 -variacion 1 -report mireporte</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
