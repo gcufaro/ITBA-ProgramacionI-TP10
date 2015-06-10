@@ -229,7 +229,6 @@ int main(int argc, char *argv[])
    return 0;
 }
 
-<<<<<<< HEAD
 void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
 {
     if(n<=0)
@@ -260,8 +259,6 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     MiAlgoritmoKoch(puntoD, puntoE, n-1, micolor1);
     }
 }
-=======
->>>>>>> origin/master
 
 
 
