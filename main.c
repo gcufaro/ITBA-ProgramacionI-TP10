@@ -66,10 +66,10 @@ int main(int argc, char *argv[])
 
 //Identificacion de cada opcion------------------------------------------
 
-	char* clave1="-order";
-	char* clave2="-tol";
-	char* clave3="-color";
-	char* clave4="-report";
+	char* clave1="-order\0";
+	char* clave2="-tol\0";
+	char* clave3="-color\0";
+	char* clave4="-report\0";
 
 	int orden=-1, tolerancia=-1, doreport=0;					//valores del orden, tolerancia y report de control
 	int red=255, green=0, blue=0;							//valores de los colores por defecto
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
 	for(i=0;i<argc;i++)
 	{
-		if(argtype[i]==2)
+		if(argtype[i]==1)
 		{
 			if(mystr_compare(clave1, argv[i]))				//me fijo si esa calve es el orden
 			{
@@ -123,6 +123,7 @@ int main(int argc, char *argv[])
 	}
 
 
+
 //Controles respecto a la relacion orden-tolerancia---------------------
 
 	if((orden==-1)&&(tolerancia==-1))					//me fijo si no se establecio por opcion ni orden ni tolerancia
@@ -150,8 +151,14 @@ int main(int argc, char *argv[])
 		if(freport==NULL)								//indico si se produjo algun error al abrir el archivo
 			printf("El reporte %s no ha podido crearse correctamente.\n",reportname);
 
-		fpritnf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %d\n\tArea: %d\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+	//	fprintf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
+	
+		printf("Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
 	}
+
+
+	return 0;
+}
 
 
 //Inicia la parte grafica------------------------------------------------
