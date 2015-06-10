@@ -5,7 +5,7 @@
     <conf name="Debug" type="1">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
-        <platform>3</platform>
+        <platform>2</platform>
       </toolsSet>
       <dbx_gdbdebugger version="1">
         <gdb_pathmaps>
@@ -24,18 +24,18 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -report mireport</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" </runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -report filename</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename -variacion</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 1 -colorb 150 -report filename -variacion 1</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -variacion 1</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -orden 4 -variacion 1</runcommandpicklistitem>
-          <runcommandpicklistitem>"${OUTPUT_PATH}" -orden 4 -variacion 1 -report mireporte</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 3 -color 255,0,255</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 0,0,255</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 255,0,255</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 0,255,0</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 0,100,0</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 255,255,0</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 255,125,125</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 0,128,128</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 2 -color 0,128,128 -report myreport</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -order 5 -color 0,128,128 -report myreport -tol 3</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}" -orden 4 -variacion 1 -report mireporte</runcommand>
+        <runcommand>"${OUTPUT_PATH}" -order 5 -color 0,128,128 -report myreport -tol 3</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

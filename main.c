@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <dos.h>
+
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_native_dialog.h>
@@ -38,13 +38,13 @@ int main(int argc, char *argv[])
 
 				if(*(argv[i+1])=='-')	//Verifico que no hayan dos claves consecutivas
 				{
-					printf("Hay dos opciones consecutivas sin un valor entre ellas.\n", i, i+1);
+					printf("Hay dos opciones consecutivas sin un valor entre ellas.\n");
 					return -1;
 				}
 
 				if(*(argv[i]+1)=='\0')	//Verifico que la clave tenga sentido
 				{
-					printf("Hay (por lo menos) una opcion invalida.\n",i);
+					printf("Hay (por lo menos) una opcion invalida.\n");
 					return -1;
 				}
 
@@ -82,7 +82,9 @@ int main(int argc, char *argv[])
 		{
 			if(mystr_compare(clave1, argv[i]))				//me fijo si esa calve es el orden
 			{
-				orden = getint(argv[i+1]);
+                            
+                                orden = getint(argv[i+1]);
+                                
 				if(orden==-1)
 				{
 					printf("El valor del orden es invalido.\n");
@@ -157,9 +159,11 @@ int main(int argc, char *argv[])
 
 		if(freport==NULL)								//indico si se produjo algun error al abrir el archivo
 			printf("El reporte %s no ha podido crearse correctamente.\n",reportname);
-
-		fprintf(freport,"Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
-	
+                double per=(3*500*(pow(4/3,(double)orden)));
+                double area=((8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5);
+		fprintf( freport, "Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, per , area);
+                //fprintf( freport, "Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %d\n\tArea: %d\n", orden, tolerancia, 4 , 8);
+                fclose(freport);
 		//printf("Reporte descriptivo del fractal dibujado:\n\tOrden: %d\n\tTolerancia: %d\n\tPerimetro: %f\n\tArea: %f\n", orden, tolerancia, 3*500*(pow(4/3,(double)orden), (8-3*(pow(4/9, (double)orden)))*sqrt(3)*250*250/5));
 	}
 

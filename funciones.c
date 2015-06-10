@@ -18,7 +18,7 @@ void MiAlgoritmoKoch(mipunto inicio, mipunto fin, int n, ALLEGRO_COLOR micolor1)
     int loop=0;
     if(n<=0)
     {
-        for(loop=0;loop<25;loop++)
+        for(loop=0;loop<1;loop++)
         {
             al_flip_display();
         }
@@ -57,7 +57,7 @@ int mystr_compare (char* stringA, char* stringB)
 {
 	int strlen;											//longitud del primer string
 	for(strlen=0; stringA[strlen]!='\0'; strlen++);	//recorro el string para saber su longitud
-	strlen++;										
+											
 
 	int i;											//indice para recorer el string
 	for(i=0; i<=strlen; i++)
@@ -84,7 +84,7 @@ int checkcolor (char* stringD)
 	int i, comacont=0;								//indice para recorrer string y contador de comas
 	for(i=0; stringD[i]!='\0'; i++)
 	{
-		if((stringD[i]>'9') || (stringD[i]<'1'))	//si algun caracter del string no es un numero o una coma,
+		if((stringD[i]>'9') || (stringD[i]<'0'))	//si algun caracter del string no es un numero o una coma,
 		{
 			if(stringD[i]==',')
 				comacont++;
@@ -128,7 +128,7 @@ int getB (char* stringG)
 	int i, blue=0;									//indice para recorrer el string, variable de color azul
 	for(i=0; stringG[i]!=','; i++);
 	i++;
-	for(i=0; stringG[i]!=','; i++);
+	for(i=i; stringG[i]!=','; i++);
 	i++;											//paso la segunda coma (salteo la parte del rojo y del verde)
 
 	for(i=i; stringG[i]!=','; i++)
